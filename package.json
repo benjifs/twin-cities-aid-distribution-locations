@@ -5,11 +5,15 @@
   "main": "index.html",
   "scripts": {
     "dev": "snowpack dev",
-    "build": "snowpack build",
+    "build:snowpack": "snowpack build",
+    "build": "npm run build:snowpack && npm run build:functions",
     "snowpack": "snowpack",
     "test": "npm run build && npm run test:headless",
     "test:functional": "testcafe",
-    "test:headless": "testcafe chrome:headless"
+    "test:headless": "testcafe chrome:headless",
+    "serve": "netlify-lambda serve src/functions",
+    "build:functions": "netlify-lambda build src/functions",
+    "postinstall": "netlify-lambda install src/functions"
   },
   "repository": {
     "type": "git",
@@ -26,6 +30,8 @@
     "@snowpack/plugin-babel": "^1.0.0",
     "@snowpack/plugin-dotenv": "^1.1.1",
     "@snowpack/plugin-webpack": "^1.1.0",
+    "got": "^11.3.0",
+    "netlify-lambda": "^1.6.3",
     "rollup-plugin-node-polyfills": "^0.2.1",
     "snowpack": "^2.2.2",
     "testcafe": "^1.8.6"
