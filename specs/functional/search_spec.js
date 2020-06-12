@@ -40,6 +40,8 @@ test('Clear Search', async t => {
     .expect(Selector('.location-list--item').count).notEql(listCount)
     // Click on the "Clear Search" button
     .click(Selector('#clear-search-btn'))
+    // Wait 1000ms
+    .wait(1000)
     // List count should equals the original listCount
     .expect(Selector('.location-list--item').count).eql(listCount)
 })
