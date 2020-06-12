@@ -11,6 +11,7 @@ fixture `Search`
 
 test('Search for term', async t => {
   const listCount = await Selector('.location-list--item').count
+  console.log('listCount', listCount)
 
   // This will have to change if we switch to drawing the map with canvas
   await t
@@ -29,10 +30,12 @@ test('Search for term', async t => {
 
 test('Clear Search', async t => {
   const listCount = await Selector('.location-list--item').count
+  console.log('listCount', listCount)
 
   // This will have to change if we switch to drawing the map with canvas
   await t
     // Type "test" into the search input
+    .click(Selector('#search'))
     .typeText(Selector('#search'), 'test')
     // Wait 1000ms
     .wait(1000)
@@ -48,7 +51,9 @@ test('Clear Search', async t => {
 
 test('Navigate to page with search parameter', async t => {
   const listCount = await Selector('.location-list--item').count
+  console.log('listCount', listCount)
   const url = await getURL()
+  console.log('url', url)
 
   // This will have to change if we switch to drawing the map with canvas
   await t
@@ -56,6 +61,8 @@ test('Navigate to page with search parameter', async t => {
     .navigateTo(`${url}?search=test`)
     // Wait 1000ms
     .wait(1000)
+    // Search box value should be "test"
+    .expect(Selector('#search').value).eql('test')
     // New results should not equal the original count
     .expect(Selector('.location-list--item').count).notEql(listCount)
 })
