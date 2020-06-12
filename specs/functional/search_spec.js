@@ -7,6 +7,7 @@ fixture `Search`
   .afterEach(async t => {
     await t
       .navigateTo('http://localhost:8080')
+      .wait(1000)
   })
 
 test('Search for term', async t => {
