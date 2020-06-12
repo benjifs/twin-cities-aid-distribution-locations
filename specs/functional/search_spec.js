@@ -40,8 +40,6 @@ test('Clear Search', async t => {
     .expect(getURL()).notContains('?search=test')
     // Search input should be empty
     .expect(Selector('#search').value).eql('')
-    // List count should equals the original listCount
-    .expect(Selector('.location-list--item').count).eql(listCount)
 })
 
 test('Navigate to page with search parameter', async t => {
